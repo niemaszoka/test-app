@@ -8,6 +8,7 @@ import { EmailFormViewComponent } from './components/email-form-view/email-form-
 import { PasswordFormViewComponent } from './components/password-form-view/password-form-view.component';
 import { SearchViewComponent } from './components/search-view/search-view.component';
 import { VideoViewComponent } from './components/video-view/video-view.component';
+import { TextInputComponent } from './components/shared/text-input/text-input.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { VideoViewComponent } from './components/video-view/video-view.component
     EmailFormViewComponent,
     PasswordFormViewComponent,
     SearchViewComponent,
-    VideoViewComponent
+    VideoViewComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
