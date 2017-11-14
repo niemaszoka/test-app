@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-video-view',
+  selector: 'yv-video-view',
   templateUrl: './video-view.component.html',
   styleUrls: ['video-view.component.scss'],
   encapsulation: ViewEncapsulation.None
