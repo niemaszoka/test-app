@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'yv-video-view',
@@ -8,9 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class VideoViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
 }
