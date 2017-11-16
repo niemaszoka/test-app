@@ -5,10 +5,14 @@ import {EmailFormViewComponent} from "./components/email-form-view/email-form-vi
 import {PasswordFormViewComponent} from "./components/password-form-view/password-form-view.component";
 import {SearchViewComponent} from "./components/search-view/search-view.component";
 import {VideoViewComponent} from "./components/video-view/video-view.component";
+import {SignInComponent} from "./components/sign-in/sign-in.component";
 
 const routes: Routes= [
-  { path: 'EmailForm', component: EmailFormViewComponent},
-  { path: 'PasswordForm', component: PasswordFormViewComponent},
+  { path: 'SignIn', component: SignInComponent, children: [
+      { path: 'email', component: EmailFormViewComponent},
+      { path: 'password', component: PasswordFormViewComponent},
+      { path: '', redirectTo: 'email', pathMatch: 'full' },
+  ]},
   { path: 'Video', component: VideoViewComponent},
   { path: 'Search', component: SearchViewComponent},
   { path: '', redirectTo: 'Search', pathMatch: 'full' },

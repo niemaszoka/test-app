@@ -9,6 +9,7 @@ import { PasswordFormViewComponent } from './components/password-form-view/passw
 import { SearchViewComponent } from './components/search-view/search-view.component';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { TextInputComponent } from './components/shared/text-input/text-input.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TextInputComponent } from './components/shared/text-input/text-input.co
     PasswordFormViewComponent,
     SearchViewComponent,
     VideoViewComponent,
-    TextInputComponent
+    TextInputComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
