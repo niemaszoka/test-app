@@ -13,9 +13,12 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {UserService} from "./components/shared/services/user.service";
 import {AuthService} from "./components/shared/services/auth.service";
+<<<<<<< HEAD
 import {HttpClientModule} from "@angular/common/http";
 import {RestService} from "./components/shared/services/rest.service";
 import { SearchResultsListComponent } from './components/search-view/search-results-list/search-results-list.component';
+=======
+>>>>>>> development
 
 
 @NgModule({
@@ -34,12 +37,18 @@ import { SearchResultsListComponent } from './components/search-view/search-resu
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     HttpClientModule
+=======
+>>>>>>> development
   ],
   providers: [
     UserService,
     AuthService,
+<<<<<<< HEAD
     RestService
+=======
+>>>>>>> development
   ],
   bootstrap: [AppComponent]
 })
