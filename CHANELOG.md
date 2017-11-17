@@ -1,3 +1,5 @@
 0.0.1
 ---------
 - Basic project setup (routing/view components)
+- Added elemental parts for views like input
+- Set up basic (very raw) usage of youtube api

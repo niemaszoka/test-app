@@ -13,6 +13,9 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {UserService} from "./components/shared/services/user.service";
 import {AuthService} from "./components/shared/services/auth.service";
+import {HttpClientModule} from "@angular/common/http";
+import {RestService} from "./components/shared/services/rest.service";
+import { SearchResultsListComponent } from './components/search-view/search-results-list/search-results-list.component';
 
 
 @NgModule({
@@ -23,17 +26,20 @@ import {AuthService} from "./components/shared/services/auth.service";
     SearchViewComponent,
     VideoViewComponent,
     TextInputComponent,
-    SignInComponent
+    SignInComponent,
+    SearchResultsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     UserService,
     AuthService,
+    RestService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,10 @@
-<div>
+<div class='search-view'>
   <label> Search
-    <input [formControl]="searchInput">
+    <input [formControl]="searchInput" (keyup)="onKeyUp()">
   </label>
+  <div class='search-view__results'>
+    <div *ngFor="let video of results">
+       {{video.snippet.title | json }}
+    </div><br>
+  </div>
 </div>
