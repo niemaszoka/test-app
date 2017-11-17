@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {EmailFormViewComponent} from "./components/email-form-view/email-form-view.component";
-import {PasswordFormViewComponent} from "./components/password-form-view/password-form-view.component";
+import {EmailFormViewComponent} from "./components/sign-in/email-form-view/email-form-view.component";
+import {PasswordFormViewComponent} from "./components/sign-in/password-form-view/password-form-view.component";
 import {SearchViewComponent} from "./components/search-view/search-view.component";
 import {VideoViewComponent} from "./components/video-view/video-view.component";
 import {SignInComponent} from "./components/sign-in/sign-in.component";

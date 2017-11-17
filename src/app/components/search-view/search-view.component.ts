@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthService} from "../shared/services/auth.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'yv-search-view',
@@ -8,9 +11,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SearchViewComponent implements OnInit {
 
-  constructor() { }
+  public searchInput = new FormControl();
+
+  constructor(private authService: AuthService,
+              private router: Router) {
+  }
 
   ngOnInit() {
+    if (!this.authService.isUserAuthenticated()) {
+      this.router.navigateByUrl('/SignIn');
+    }
   }
 
 }

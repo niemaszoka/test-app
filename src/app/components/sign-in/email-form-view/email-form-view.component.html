@@ -1,0 +1,8 @@
+<div>
+  <button>SignIn</button><button>Register</button>
+  <label> Email
+    <input [formControl]="emailInput">
+    <div>{{ emailInput.status | json }}</div>
+  </label>
+  <button (click)="onSubmit()" [disabled]="isSubmissionDisabled()">OK</button>
+</div>
