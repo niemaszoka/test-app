@@ -37,18 +37,12 @@ import { SearchResultsListComponent } from './components/search-view/search-resu
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
     HttpClientModule
-=======
->>>>>>> development
   ],
   providers: [
     UserService,
     AuthService,
-<<<<<<< HEAD
     RestService
-=======
->>>>>>> development
   ],
   bootstrap: [AppComponent]
 })
