@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {DatabaseService} from "../../services/database.service";
 
 @Component({
   selector: 'yv-sign-in',
@@ -8,9 +9,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
+
   }
 
 }

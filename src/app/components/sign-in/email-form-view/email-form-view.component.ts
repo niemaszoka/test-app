@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {UserService} from "../../shared/services/user.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'yv-email-form-view',
@@ -12,6 +12,7 @@ import {UserService} from "../../shared/services/user.service";
 export class EmailFormViewComponent implements OnInit, AfterViewInit {
 
   public emailInput = new FormControl('', Validators.email);
+  public loginOption = new FormControl('signIn', Validators.required);
 
   constructor(private router: Router,
               private userService: UserService) { }

@@ -1,5 +1,8 @@
-<div>
-  <button>SignIn</button><button>Register</button>
+<div class="email-form-view">
+  <div class="email-form-view__login-options">
+    <input type="radio" name="loginOption" value="signIn" checked id="loginOption_signIn"><label for="loginOption_signIn"> Sign in</label>
+    <input type="radio" name="loginOption" value="register" id="loginOption_register"><label for="loginOption_register"> Register</label>
+  </div>
   <label> Email
     <input [formControl]="emailInput">
     <div>{{ emailInput.status | json }}</div>

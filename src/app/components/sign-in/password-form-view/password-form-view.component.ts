@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {UserService} from "../../shared/services/user.service";
+import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 
 @Component({

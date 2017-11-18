@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "../shared/services/auth.service";
-import {FormControl} from "@angular/forms";
-import {RestService} from "../shared/services/rest.service";
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { FormControl } from '@angular/forms';
+import { RestService } from '../../services/rest.service';
 
 @Component({
   selector: 'yv-search-view',
