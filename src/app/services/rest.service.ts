@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 
@@ -20,4 +20,8 @@ export class RestService {
       }
     });
   };
+
+  public getDatabase = () => {
+    return this.httpClient.get('assets/database.json');
+  }
 }
