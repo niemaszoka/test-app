@@ -16,7 +16,7 @@ const routes: Routes= [
       { path: '', redirectTo: 'email', pathMatch: 'full' },
   ]},
   { path: '', component: MainViewComponent, canActivate: [AuthorizationGuard], children: [
-    { path: 'video', component: VideoComponent},
+    { path: 'video/:videoId', component: VideoComponent},
     { path: '', component: SearchComponent},
   ]},
   { path: '**', redirectTo: '', pathMatch: 'full'}
