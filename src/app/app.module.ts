@@ -17,6 +17,8 @@ import { SearchResultsListComponent } from './components/search-view/search-resu
 import { DatabaseService } from './services/database.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { AuthorizationGuard, RegistrationGuard } from './activation-guards';
+import { LocalStorageService } from './services/localStorage.service';
 
 
 @NgModule({
@@ -41,7 +43,10 @@ import { UserService } from './services/user.service';
     UserService,
     AuthService,
     RestService,
-    DatabaseService
+    DatabaseService,
+    LocalStorageService,
+    RegistrationGuard,
+    AuthorizationGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {UserService} from "../../../services/user.service";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'yv-email-form-view',
@@ -9,28 +9,50 @@ import {UserService} from "../../../services/user.service";
   styleUrls: ['email-form-view.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EmailFormViewComponent implements OnInit, AfterViewInit {
+
+export class EmailFormViewComponent implements OnInit {
 
   public emailInput = new FormControl('', Validators.email);
+  public passwordInput = new FormControl('', [Validators.minLength(8), Validators.required]);
+  public errorMessage: string = '';
+
   public loginOption = new FormControl('signIn', Validators.required);
 
   constructor(private router: Router,
-              private userService: UserService) { }
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    console.log(this.emailInput);
+  register() {
+    this.authService.registerUser(this.emailInput.value, this.passwordInput.value);
+    this.router.navigate(['/Search']);
+  }
+
+  signIn() {
+    this.authService.getRegisteredUserData(this.emailInput.value).subscribe(
+      (userData) => {
+        this.authService.saveRegisteredUserData(userData);
+        this.router.navigate(['/SignIn/password']);
+      }, (error) => {
+        this.errorMessage = 'User with this email is not registered.';
+      }
+    );
   }
 
   onSubmit() {
-    this.userService.setUserEmail(this.emailInput.value);
-    this.router.navigateByUrl('/SignIn/password');
+    return this.loginOption.value === 'register' ? this.register() : this.signIn();
+  };
+
+  isSubmissionDisabled() {
+    return this.loginOption.value === 'register' ? this.isRegistrationDisabled(): this.isSignInDisabled();
   }
 
-  isSubmissionDisabled(): boolean {
-    return this.emailInput.status === 'INVALID';
+  isSignInDisabled(): boolean {
+    return this.emailInput.invalid;
   }
 
+  isRegistrationDisabled(): boolean {
+    return this.emailInput.invalid || this.passwordInput.invalid;
+  }
 }

@@ -20,8 +20,4 @@ export class RestService {
       }
     });
   };
-
-  public getDatabase = () => {
-    return this.httpClient.get('assets/database.json');
-  }
 }

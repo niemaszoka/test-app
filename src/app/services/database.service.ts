@@ -1,54 +1,55 @@
 import { Injectable } from '@angular/core';
-import { User } from '../data-models/user-data-model';
 import { Database } from '../data-models/database-data-model';
-import { RestService } from './rest.service';
+import { UserData } from '../data-models/user-data.interface';
+import { LocalStorageService } from './localStorage.service';
 
 @Injectable()
 
 export class DatabaseService {
-  protected database: Database;
+  private database: Database;
+  private readonly DATABASE_LOCAL_STORAGE_KEY = 'yv-database';
 
-  constructor(private restService: RestService) {
-    console.log('constructor');
-    this.getDatabase().subscribe((database: Database) => {
-      console.log('after');
-      this.database = database;
-      this.addUser({
-        email: 'test email',
-        password: 'test password'
-      });
-    });
+  constructor(private localStorageService: LocalStorageService) {
+    this.database = this.getDatabase();
   }
 
-  public addUser = (user: User) => {
+  public addUserData = (user: UserData) => {
     const newUserID = this.generateId();
+    if (!this.database.data.hasOwnProperty('users')) {
+      this.database.data.users = {};
+    }
     this.database.data.users[newUserID] = user;
     this.saveDatabase();
   };
 
   public getUserByEmail = (email: string) => {
+    return this.getUserDataByField('email', email);
+  };
+
+  public getUserDataByField = (fieldName: string, fieldValue: any): UserData => {
     const users = this.database.data.users;
     const keys = Object.keys(users);
 
     for(let i = 0; i < keys.length; i++) {
-      if (users[keys[i]].email === email) {
+      if (users[keys[i]][fieldName] === fieldValue) {
         return users[keys[i]];
       }
     }
     return null;
   };
 
-  private getDatabase = () => {
-    return this.restService.getDatabase();
+  private getDatabase = (): Database => {
+    let savedDatabase = this.localStorageService.get(this.DATABASE_LOCAL_STORAGE_KEY);
+
+    if (!savedDatabase) {
+      savedDatabase = {data: {}};
+      this.localStorageService.set(this.DATABASE_LOCAL_STORAGE_KEY, savedDatabase);
+    }
+    return savedDatabase;
   };
 
   private saveDatabase = () => {
-    const linkElement = document.createElement('a');
-    const file = new Blob([this.database], {type: 'json'});
-    linkElement.href = URL.createObjectURL(file);
-    linkElement.download = name;
-    linkElement.click();
-    console.log(this.database);
+    this.localStorageService.set(this.DATABASE_LOCAL_STORAGE_KEY, this.database);
   };
 
   private generateId = () => {
