@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { FormControl } from '@angular/forms';
-import { RestService } from '../../services/rest.service';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
+import { RestService } from '../../../services/rest.service';
 
 @Component({
-  selector: 'yv-search-view',
-  templateUrl: './search-view.component.html',
-  styleUrls: ['search-view.component.scss'],
+  selector: 'yv-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SearchViewComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   public searchInput = new FormControl();
   public results: any[] = [];
