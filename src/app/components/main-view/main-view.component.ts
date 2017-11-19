@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'yv-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
+  selector: 'yv-main-view',
+  templateUrl: './main-view.component.html',
+  styleUrls: ['./main-view.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SignInComponent implements OnInit {
+export class MainViewComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }

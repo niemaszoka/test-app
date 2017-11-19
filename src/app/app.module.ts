@@ -1,24 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EmailFormViewComponent } from './components/sign-in/email-form-view/email-form-view.component';
 import { PasswordFormViewComponent } from './components/sign-in/password-form-view/password-form-view.component';
-import { SearchViewComponent } from './components/search-view/search-view.component';
-import { VideoViewComponent } from './components/video-view/video-view.component';
 import { TextInputComponent } from './components/shared/text-input/text-input.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {UserService} from "./components/shared/services/user.service";
-import {AuthService} from "./components/shared/services/auth.service";
-<<<<<<< HEAD
-import {HttpClientModule} from "@angular/common/http";
-import {RestService} from "./components/shared/services/rest.service";
-import { SearchResultsListComponent } from './components/search-view/search-results-list/search-results-list.component';
-=======
->>>>>>> development
+import { RestService } from './services/rest.service';
+import { SearchResultsListComponent } from './components/main-view/search/search-results-list/search-results-list.component';
+import { DatabaseService } from './services/database.service';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { AuthorizationGuard, RegistrationGuard } from './activation-guards';
+import { LocalStorageService } from './services/localStorage.service';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import { SearchComponent } from './components/main-view/search/search.component';
+import { VideoComponent } from './components/main-view/video/video.component';
 
 
 @NgModule({
@@ -26,11 +27,12 @@ import { SearchResultsListComponent } from './components/search-view/search-resu
     AppComponent,
     EmailFormViewComponent,
     PasswordFormViewComponent,
-    SearchViewComponent,
-    VideoViewComponent,
     TextInputComponent,
     SignInComponent,
-    SearchResultsListComponent
+    SearchResultsListComponent,
+    MainViewComponent,
+    SearchComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +44,15 @@ import { SearchResultsListComponent } from './components/search-view/search-resu
   providers: [
     UserService,
     AuthService,
-    RestService
+    RestService,
+    DatabaseService,
+    LocalStorageService,
+    RegistrationGuard,
+    AuthorizationGuard,
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 
 }

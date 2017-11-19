@@ -1,10 +1,10 @@
-<div class='search-view'>
+<div class='search'>
   <label> Search
     <input [formControl]="searchInput" (keyup)="onKeyUp()">
   </label>
-  <div class='search-view__results'>
+  <div class='search__results'>
     <div *ngFor="let video of results">
-       {{video.snippet.title | json }}
+      {{video.snippet.title | json }}
     </div><br>
   </div>
 </div>

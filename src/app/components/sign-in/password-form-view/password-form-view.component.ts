@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {UserService} from "../../shared/services/user.service";
-import {Router} from "@angular/router";
+import { FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'yv-password-form-view',
@@ -12,23 +13,26 @@ import {Router} from "@angular/router";
 export class PasswordFormViewComponent implements OnInit {
 
   public passwordInput = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  public errorMessage:string = '';
 
   constructor(private router: Router,
-              private userService: UserService) { }
+              private authService: AuthService) {
+  }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    console.log(this.passwordInput);
-  }
-
   onSubmit() {
-    this.userService.setUserEmail(this.passwordInput.value);
-    this.router.navigateByUrl('/Search');
+    this.authService.loginUserWithPassword(this.passwordInput.value).subscribe(
+      () => {
+        this.router.navigate(['/Search']);
+      }, (error) => {
+        this.errorMessage = 'Incorrect password';
+      }
+    );
   }
 
   isSubmissionDisabled(): boolean {
-    return this.passwordInput.status === 'INVALID';
+    return this.passwordInput.invalid;
   }
 }

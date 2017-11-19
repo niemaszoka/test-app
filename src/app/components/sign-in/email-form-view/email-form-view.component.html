@@ -1,8 +1,35 @@
-<div>
-  <button>SignIn</button><button>Register</button>
-  <label> Email
-    <input [formControl]="emailInput">
-    <div>{{ emailInput.status | json }}</div>
+<div class="email-form-view">
+  <label class="email-form-view__login-option-selection" for="loginOption_signIn">
+  <input type="radio"
+         name="loginOption"
+         value="signIn"
+         checked id="loginOption_signIn"
+         [formControl]="loginOption">
+    Sign in
   </label>
-  <button (click)="onSubmit()" [disabled]="isSubmissionDisabled()">OK</button>
+
+  <label class="email-form-view__login-option-selection" for="loginOption_register">
+    <input type="radio"
+           name="loginOption"
+           value="register"
+           id="loginOption_register"
+           [formControl]="loginOption">
+    Register
+  </label>
+
+  <div class="email-form-view__form">
+    <label> Email
+      <input [formControl]="emailInput">
+      <div>{{ emailInput.status | json }}</div>
+    </label>
+    <div class="email-form-view__error-message">{{errorMessage}}</div>
+    <label *ngIf="loginOption.value === 'register'"> Password
+      <input [formControl]="passwordInput">
+      <div>{{ passwordInput.status | json }}</div>
+    </label>
+    <button (click)="onSubmit()" [disabled]="isSubmissionDisabled()">
+      {{(loginOption.value === 'signIn') ? 'SIGN IN' : 'REGISTER'}}
+    </button>
+  </div>
 </div>
+
