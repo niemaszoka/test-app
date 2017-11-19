@@ -5,3 +5,4 @@
 - Set up basic (very raw) usage of youtube api
 - Added database management
 - Implemented basic logic for a user authorization
+- Basic setup of video view

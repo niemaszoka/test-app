@@ -16,7 +16,7 @@ export class RestService {
         maxResults: '25',
         part: 'snippet',
         q: phrase,
-        type: ''
+        type: 'video'
       }
     });
   };

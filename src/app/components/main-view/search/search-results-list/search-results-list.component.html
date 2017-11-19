@@ -1,3 +1,7 @@
-<p>
-  search-results-list works!
-</p>
+<div class='search-results-list'>
+  <div *ngFor="let video of resultsList">
+    <div (click)="onVideoClick(video)">
+      {{video.snippet.title | json }}
+    </div>
+  </div><br>
+</div>

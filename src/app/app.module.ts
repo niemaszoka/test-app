@@ -20,6 +20,7 @@ import { LocalStorageService } from './services/localStorage.service';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { SearchComponent } from './components/main-view/search/search.component';
 import { VideoComponent } from './components/main-view/video/video.component';
+import { AppHeaderComponent } from './components/main-view/app-header/app-header.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { VideoComponent } from './components/main-view/video/video.component';
     SearchResultsListComponent,
     MainViewComponent,
     SearchComponent,
-    VideoComponent
+    VideoComponent,
+    AppHeaderComponent
   ],
   imports: [
     BrowserModule,

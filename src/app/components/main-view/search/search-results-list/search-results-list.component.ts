@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'yv-search-results-list',
@@ -8,9 +9,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SearchResultsListComponent implements OnInit {
 
-  constructor() { }
+  @Input() resultsList: Array<any>;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
+  public onVideoClick(video) {
+    this.router.navigate(['/video', video.id.videoId])
+  }
+
 
 }

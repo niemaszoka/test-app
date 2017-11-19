@@ -2,9 +2,5 @@
   <label> Search
     <input [formControl]="searchInput" (keyup)="onKeyUp()">
   </label>
-  <div class='search__results'>
-    <div *ngFor="let video of results">
-      {{video.snippet.title | json }}
-    </div><br>
-  </div>
+  <yv-search-results-list [resultsList]="results"></yv-search-results-list>
 </div>
