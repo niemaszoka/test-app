@@ -19,13 +19,16 @@ export class AuthorizationGuard implements CanActivate {
 }
 
 @Injectable()
-export class RegistrationGuard implements CanActivate {
+export class SignInPasswordRouteGuard implements CanActivate {
   constructor(private router: Router,
               private authService: AuthService) {}
 
   public canActivate() {
-    if (this.authService.isCurrentUserRegistered()) {
+    if (this.authService.isCurrentUserRegistered() && !this.authService.isUserAuthenticated()) {
       return true;
+    } else if (this.authService.isUserAuthenticated()){
+      this.router.navigate(['Search']);
+      return false;
     } else {
       this.router.navigate(['SignIn/email']);
       return false;
