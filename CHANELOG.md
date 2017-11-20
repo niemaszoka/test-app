@@ -7,3 +7,4 @@
 - Implemented basic logic for a user authorization
 - Basic setup of video view
 - Fixed invalid routing guards
+- Logic for logging out current user

@@ -10,4 +10,8 @@ export class LocalStorageService {
   public get(key: string): any {
     return JSON.parse(localStorage.getItem(key));
   }
+
+  public remove(key: string) {
+    return localStorage.removeItem(key);
+  }
 }
