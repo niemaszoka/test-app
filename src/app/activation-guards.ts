@@ -9,19 +9,10 @@ export class AuthorizationGuard implements CanActivate {
   ) {}
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUrl = state.url;
-    console.log(currentUrl);
     if (this.authService.isUserAuthenticated()) {
-      switch (currentUrl) {
-        case '/SignIn/email':
-        case '/SignIn/password':
-          this.router.navigate(['Search']);
-          return true;
-        default:
-          return true;
-      }
+      return true;
     } else {
-      this.router.navigate(['SignIn']);
+      this.router.navigate(['SignIn/email']);
       return false;
     }
   }
@@ -38,6 +29,22 @@ export class RegistrationGuard implements CanActivate {
     } else {
       this.router.navigate(['SignIn/email']);
       return false;
+    }
+  }
+}
+
+@Injectable()
+export class SignInEmailRouteGuard implements CanActivate {
+  constructor(private router: Router,
+              private authService: AuthService
+  ) {}
+
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.authService.isUserAuthenticated()) {
+      this.router.navigate(['Search']);
+      return false;
+    } else {
+      return true;
     }
   }
 }

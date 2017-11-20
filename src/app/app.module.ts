@@ -15,7 +15,7 @@ import { SearchResultsListComponent } from './components/main-view/search/search
 import { DatabaseService } from './services/database.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
-import { AuthorizationGuard, RegistrationGuard } from './activation-guards';
+import { AuthorizationGuard, RegistrationGuard, SignInEmailRouteGuard } from './activation-guards';
 import { LocalStorageService } from './services/localStorage.service';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { SearchComponent } from './components/main-view/search/search.component';
@@ -51,6 +51,7 @@ import { AppHeaderComponent } from './components/main-view/app-header/app-header
     LocalStorageService,
     RegistrationGuard,
     AuthorizationGuard,
+    SignInEmailRouteGuard
   ],
   bootstrap: [AppComponent]
 })
