@@ -24,7 +24,7 @@
     </label>
     <div class="email-form-view__error-message">{{errorMessage}}</div>
     <label *ngIf="loginOption.value === 'register'"> Password
-      <input [formControl]="passwordInput">
+      <input [formControl]="passwordInput" type="password">
       <div>{{ passwordInput.status | json }}</div>
     </label>
     <button (click)="onSubmit()" [disabled]="isSubmissionDisabled()">

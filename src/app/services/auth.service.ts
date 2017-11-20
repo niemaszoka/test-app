@@ -10,6 +10,7 @@ import { LocalStorageService } from './localStorage.service';
 export class AuthService {
   private getUserDataObservable: Observable<UserData>;
   private loginUserObservable: Observable<boolean>;
+  private logoutFromAppObservable: Observable<boolean>;
   private registeredUserData: UserData = null;
   private readonly tokenDurationInHours: number = 24;
   private readonly AUTH_DATA_LOCAL_STORAGE_KEY = 'user-auth-data';
@@ -106,4 +107,18 @@ export class AuthService {
   public saveUserAuthData = (authToken: AuthToken) => {
     this.localStorageService.set(this.AUTH_DATA_LOCAL_STORAGE_KEY, authToken);
   };
+
+  public clearUserAuthData = () => {
+    this.localStorageService.remove(this.AUTH_DATA_LOCAL_STORAGE_KEY);
+  };
+
+  public logoutFromApp = () => {
+    this.logoutFromAppObservable = new Observable((observer) => {
+      this.clearUserAuthData();
+      this.registeredUserData = null;
+      observer.next(true);
+    });
+
+    return this.logoutFromAppObservable;
+  }
 }
