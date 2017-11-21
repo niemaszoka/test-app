@@ -21,10 +21,10 @@ export class AuthService {
 
   loginUserWithPassword = (password: string) => {
     const isPasswordCorrect = this.checkPasswordForRegisteredUser(password);
-    this.saveUserAuthData(this.registeredUserData.authToken);
 
     this.loginUserObservable = new Observable(observer => {
       if (isPasswordCorrect) {
+        this.saveUserAuthData(this.registeredUserData.authToken);
         observer.next();
         observer.complete();
       } else {
