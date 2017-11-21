@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EmailFormViewComponent } from './components/sign-in/email-form-view/email-form-view.component';
 import { PasswordFormViewComponent } from './components/sign-in/password-form-view/password-form-view.component';
-import { TextInputComponent } from './components/shared/text-input/text-input.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RestService } from './services/rest.service';
 import { SearchResultsListComponent } from './components/main-view/search/search-results-list/search-results-list.component';
@@ -26,19 +25,17 @@ import { SearchComponent } from './components/main-view/search/search.component'
 import { VideoComponent } from './components/main-view/video/video.component';
 import { AppHeaderComponent } from './components/main-view/app-header/app-header.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     EmailFormViewComponent,
     PasswordFormViewComponent,
-    TextInputComponent,
     SignInComponent,
     SearchResultsListComponent,
     MainViewComponent,
     SearchComponent,
     VideoComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
   ],
   imports: [
     BrowserModule,

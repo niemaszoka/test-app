@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'yv-password-form-view',
@@ -10,10 +11,11 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['password-form-view.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PasswordFormViewComponent implements OnInit {
+export class PasswordFormViewComponent implements OnInit, OnDestroy {
 
   public passwordInput = new FormControl('', [Validators.required, Validators.minLength(8)]);
   public errorMessage:string = '';
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
   constructor(private router: Router,
               private authService: AuthService) {
@@ -22,8 +24,15 @@ export class PasswordFormViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
   onSubmit() {
-    this.authService.loginUserWithPassword(this.passwordInput.value).subscribe(
+    this.authService.loginUserWithPassword(this.passwordInput.value)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
       () => {
         this.router.navigate(['/Search']);
       }, (error) => {

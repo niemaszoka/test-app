@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'yv-email-form-view',
@@ -10,18 +12,31 @@ import { AuthService } from '../../../services/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class EmailFormViewComponent implements OnInit {
+export class EmailFormViewComponent implements OnInit, OnDestroy {
 
   public emailInput = new FormControl('', Validators.email);
   public passwordInput = new FormControl('', [Validators.minLength(8), Validators.required]);
-  public errorMessage: string = '';
-
+  public submitErrorMessage: string = '';
   public loginOption = new FormControl('signIn', Validators.required);
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
   constructor(private router: Router,
               private authService: AuthService) { }
 
   ngOnInit() {
+    this.loginOption.valueChanges
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(() => {
+        if (this.submitErrorMessage) {
+          this.submitErrorMessage = '';
+        }
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   register() {
@@ -30,22 +45,28 @@ export class EmailFormViewComponent implements OnInit {
   }
 
   signIn() {
-    this.authService.getRegisteredUserData(this.emailInput.value).subscribe(
+    this.authService.getRegisteredUserData(this.emailInput.value)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
       (userData) => {
         this.authService.saveRegisteredUserData(userData);
         this.router.navigate(['/SignIn/password']);
       }, (error) => {
-        this.errorMessage = 'User with this email is not registered.';
+        this.submitErrorMessage = 'User with this email is not registered.';
       }
     );
   }
 
+  isRegistrationSelected = (): boolean => {
+    return this.loginOption.value === 'register';
+  };
+
   onSubmit() {
-    return this.loginOption.value === 'register' ? this.register() : this.signIn();
+    return this.isRegistrationSelected() ? this.register() : this.signIn();
   };
 
   isSubmissionDisabled() {
-    return this.loginOption.value === 'register' ? this.isRegistrationDisabled(): this.isSignInDisabled();
+    return this.isRegistrationSelected() ? this.isRegistrationDisabled(): this.isSignInDisabled();
   }
 
   isSignInDisabled(): boolean {
@@ -54,5 +75,11 @@ export class EmailFormViewComponent implements OnInit {
 
   isRegistrationDisabled(): boolean {
     return this.emailInput.invalid || this.passwordInput.invalid;
+  }
+
+  onEnterEmailInput() {
+    if (!this.isRegistrationSelected() && !this.isSubmissionDisabled()) {
+      this.onSubmit();
+    }
   }
 }

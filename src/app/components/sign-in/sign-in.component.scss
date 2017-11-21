@@ -1,0 +1,10 @@
+@import "../../styles/colors";
+.sign-in {
+
+  &__welcome-message {
+    background: $darkAqua;
+    padding: 20px;
+    font-size: 2rem;
+    color: $softMint;
+  }
+}

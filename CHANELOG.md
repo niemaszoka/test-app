@@ -1,3 +1,7 @@
+0.0.2
+---------
+- Improved UX and UI of email form view and password form view
+
 0.0.1
 ---------
 - Basic project setup (routing/view components)

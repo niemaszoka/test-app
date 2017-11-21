@@ -28,11 +28,14 @@ export class DatabaseService {
 
   public getUserDataByField = (fieldName: string, fieldValue: any): UserData => {
     const users = this.database.data.users;
-    const keys = Object.keys(users);
 
-    for(let i = 0; i < keys.length; i++) {
-      if (users[keys[i]][fieldName] === fieldValue) {
-        return users[keys[i]];
+    if (users) {
+      const keys = Object.keys(users);
+
+      for(let i = 0; i < keys.length; i++) {
+        if (users[keys[i]][fieldName] === fieldValue) {
+          return users[keys[i]];
+        }
       }
     }
     return null;
