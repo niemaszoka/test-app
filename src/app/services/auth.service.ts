@@ -26,10 +26,12 @@ export class AuthService {
     this.loginUserObservable = new Observable(observer => {
       if (isPasswordCorrect) {
         observer.next();
+        observer.complete();
       } else {
         observer.error();
       }
     });
+    
     return this.loginUserObservable;
   };
 
@@ -49,6 +51,7 @@ export class AuthService {
       const registeredUser = this.databaseService.getUserByEmail(email);
       if (registeredUser) {
         observer.next(registeredUser);
+        observer.complete();
       } else {
         observer.error();
       }
@@ -117,6 +120,7 @@ export class AuthService {
       this.clearUserAuthData();
       this.registeredUserData = null;
       observer.next(true);
+      observer.complete();
     });
 
     return this.logoutFromAppObservable;
