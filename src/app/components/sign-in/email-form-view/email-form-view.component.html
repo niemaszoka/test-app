@@ -23,7 +23,8 @@
     <label class="email-form-view__form__text-input">
       Email
       <input class="form-text-input"
-              [formControl]="emailInput">
+             [formControl]="emailInput"
+             (keyup.enter)="onEnterEmailInput()">
     </label>
 
     <label class="email-form-view__form__text-input"

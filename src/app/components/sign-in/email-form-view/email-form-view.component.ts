@@ -76,4 +76,10 @@ export class EmailFormViewComponent implements OnInit, OnDestroy {
   isRegistrationDisabled(): boolean {
     return this.emailInput.invalid || this.passwordInput.invalid;
   }
+
+  onEnterEmailInput() {
+    if (!this.isRegistrationSelected() && !this.isSubmissionDisabled()) {
+      this.onSubmit();
+    }
+  }
 }
