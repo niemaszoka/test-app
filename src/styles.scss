@@ -1,0 +1,13 @@
+@import 'app/styles/colors';
+@import 'app/styles/fonts.scss';
+
+html {
+  background: $white;
+  font-family: 'WorkSans';
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
