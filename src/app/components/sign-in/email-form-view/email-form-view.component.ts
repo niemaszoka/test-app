@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
@@ -14,7 +14,7 @@ export class EmailFormViewComponent implements OnInit {
 
   public emailInput = new FormControl('', Validators.email);
   public passwordInput = new FormControl('', [Validators.minLength(8), Validators.required]);
-  public errorMessage: string = '';
+  public submitErrorMessage: string = '';
 
   public loginOption = new FormControl('signIn', Validators.required);
 
@@ -22,6 +22,11 @@ export class EmailFormViewComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
+    this.loginOption.valueChanges.subscribe(() => {
+      if (this.submitErrorMessage) {
+        this.submitErrorMessage = '';
+      }
+    });
   }
 
   register() {
@@ -35,17 +40,21 @@ export class EmailFormViewComponent implements OnInit {
         this.authService.saveRegisteredUserData(userData);
         this.router.navigate(['/SignIn/password']);
       }, (error) => {
-        this.errorMessage = 'User with this email is not registered.';
+        this.submitErrorMessage = 'User with this email is not registered.';
       }
     );
   }
 
+  isRegistrationSelected = (): boolean => {
+    return this.loginOption.value === 'register';
+  };
+
   onSubmit() {
-    return this.loginOption.value === 'register' ? this.register() : this.signIn();
+    return this.isRegistrationSelected() ? this.register() : this.signIn();
   };
 
   isSubmissionDisabled() {
-    return this.loginOption.value === 'register' ? this.isRegistrationDisabled(): this.isSignInDisabled();
+    return this.isRegistrationSelected() ? this.isRegistrationDisabled(): this.isSignInDisabled();
   }
 
   isSignInDisabled(): boolean {

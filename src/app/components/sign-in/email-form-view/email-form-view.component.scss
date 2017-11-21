@@ -1,16 +1,95 @@
+@import '../../../styles/colors';
 .email-form-view {
 
-  &__login-option-selection {
-    display: block;
-    background: dodgerblue;
-    color: #fff;
-    padding: 20px;
-    font-size: 20px;
-    width: 100px;
-    cursor: pointer;
+  &__login-options {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 
-    input[type="radio"] {
-      -webkit-appearance:none;
+    &__option {
+      flex: 2 0 auto;
+      display: block;
+      color: $white;
+      padding: 20px;
+      font-size: 22px;
+      width: 100px;
+      cursor: pointer;
+      text-align: center;
+
+      &.--sign-in {
+        background: $purple;
+      }
+
+      &.--register {
+        background: $pinkRed;
+      }
+
+      input[type="radio"] {
+        -webkit-appearance:none;
+      }
+    }
+  }
+
+  &__form {
+    border: 3px solid;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &.--register {
+      border-color: $pinkRed;
+    }
+
+    &.--sign-in {
+      border-color: $purple;
+    }
+
+    &__text-input {
+      padding: 20px 30px;
+    }
+
+    &__submit-button {
+      padding: 10px 20px;
+      color: $white;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+
+      &.--register {
+        background: $pinkRed;
+      }
+
+      &.--sign-in {
+        background: $purple;
+      }
+
+      &:disabled {
+        background: $grey;
+        cursor: default;
+      }
+    }
+
+    &__error-message {
+      padding: 20px;
+      color: $red;
+      font-weight: bold;
+    }
+  }
+
+  .form-text-input {
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid $grey;
+    font-size: 20px;
+    margin: 5px 10px;
+
+    &:focus {
+      border-color: $darkAqua;
     }
   }
 }
