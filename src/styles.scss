@@ -1,9 +1,8 @@
-@import 'app/styles/colors';
-@import 'app/styles/fonts.scss';
+@import 'app/styles/variables';
 
 html {
   background: $white;
-  font-family: 'WorkSans';
+  font-family: 'WorkSans', sans-serif;
 }
 
 html, body {
