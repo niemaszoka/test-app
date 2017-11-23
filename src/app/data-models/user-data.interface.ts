@@ -1,7 +1,8 @@
 import { AuthToken } from './auth-token.interface';
 
-export interface UserData {
-  email: string,
-  password: string,
-  authToken: AuthToken
+export class UserData {
+  email: string;
+  password: string;
+  authToken: AuthToken;
+  id: string;
 }

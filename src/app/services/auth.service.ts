@@ -4,6 +4,7 @@ import { DatabaseService } from './database.service';
 import { UserData } from '../data-models/user-data.interface';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService } from './localStorage.service';
+import { User } from '../data-models/user-data-model';
 
 @Injectable()
 
@@ -11,12 +12,13 @@ export class AuthService {
   private getUserDataObservable: Observable<UserData>;
   private loginUserObservable: Observable<boolean>;
   private logoutFromAppObservable: Observable<boolean>;
-  private registeredUserData: UserData = null;
+  private registeredUser: User = null;
   private readonly tokenDurationInHours: number = 24;
   private readonly AUTH_DATA_LOCAL_STORAGE_KEY = 'user-auth-data';
 
   constructor(private databaseService: DatabaseService,
               protected localStorageService: LocalStorageService) {
+
   }
 
   loginUserWithPassword = (password: string) => {
@@ -24,7 +26,9 @@ export class AuthService {
 
     this.loginUserObservable = new Observable(observer => {
       if (isPasswordCorrect) {
-        this.saveUserAuthData(this.registeredUserData.authToken);
+        const newAuthData = this.generateAuthToken();
+        this.updateCurrentUserAuthToken(newAuthData);
+        this.saveUserAuthData(newAuthData);
         observer.next();
         observer.complete();
       } else {
@@ -38,9 +42,7 @@ export class AuthService {
   public isUserAuthenticated = (): boolean => {
     const savedAuthData: AuthToken = this.getUserSavedAuthData();
     if (savedAuthData) {
-      const isTokenNotExpired = savedAuthData.expiryDate > Date.now();
-      const isTokenValid = savedAuthData.tokenId.length !== 0;
-      return isTokenNotExpired && isTokenValid
+      return this.isTokenExpired(savedAuthData) && this.isTokenValid(savedAuthData);
     } else {
       return false;
     }
@@ -60,22 +62,21 @@ export class AuthService {
   };
 
   public saveRegisteredUserData =(userData: UserData) => {
-    this.registeredUserData = userData;
+    this.registeredUser = new User(userData.email, userData.password, userData.authToken);
   };
 
   public registerUser = (email: string, password: string) => {
     const authToken = this.generateAuthToken();
-    const newUserData: UserData = {
-      email,
-      password,
-      authToken
-    };
+    const newUser = new User(email, password, authToken);
+    const newUserData: UserData = newUser.getUserData();
+
     this.databaseService.addUserData(newUserData);
     this.saveUserAuthData(authToken);
+    this.saveRegisteredUserData(newUserData);
   };
 
   public checkPasswordForRegisteredUser = (password: string): boolean => {
-    return password === this.registeredUserData.password;
+    return password === this.registeredUser.getUserData().password;
   };
 
   public generateAuthToken = (): AuthToken => {
@@ -100,7 +101,7 @@ export class AuthService {
   };
 
   public isCurrentUserRegistered = (): boolean => {
-    return this.registeredUserData !== null;
+    return this.registeredUser !== null;
   };
 
   public getUserSavedAuthData = (): AuthToken => {
@@ -118,11 +119,24 @@ export class AuthService {
   public logoutFromApp = () => {
     this.logoutFromAppObservable = new Observable((observer) => {
       this.clearUserAuthData();
-      this.registeredUserData = null;
+      this.registeredUser = null;
       observer.next(true);
       observer.complete();
     });
 
     return this.logoutFromAppObservable;
-  }
+  };
+
+  private updateCurrentUserAuthToken = (newAuthToken: AuthToken) => {
+    this.registeredUser.setAuthToken(newAuthToken);
+    this.databaseService.updateUserData(this.registeredUser.getUserData());
+  };
+
+  private isTokenExpired = (token: AuthToken) => {
+    return token.expiryDate > Date.now();
+  };
+
+  private isTokenValid = (token: AuthToken) => {
+    return token.tokenId.length !== 0;
+  };
 }

@@ -12,6 +12,7 @@ export class AuthorizationGuard implements CanActivate {
     if (this.authService.isUserAuthenticated()) {
       return true;
     } else {
+      console.log('redirect');
       this.router.navigate(['SignIn/email']);
       return false;
     }
@@ -27,7 +28,7 @@ export class SignInPasswordRouteGuard implements CanActivate {
     if (this.authService.isCurrentUserRegistered() && !this.authService.isUserAuthenticated()) {
       return true;
     } else if (this.authService.isUserAuthenticated()){
-      this.router.navigate(['Search']);
+      this.router.navigate(['']);
       return false;
     } else {
       this.router.navigate(['SignIn/email']);
@@ -44,7 +45,7 @@ export class SignInEmailRouteGuard implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isUserAuthenticated()) {
-      this.router.navigate(['Search']);
+      this.router.navigate(['']);
       return false;
     } else {
       return true;

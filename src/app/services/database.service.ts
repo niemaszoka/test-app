@@ -22,6 +22,12 @@ export class DatabaseService {
     this.saveDatabase();
   };
 
+  public updateUserData = (userData: UserData) => {
+    const userId = userData.id;
+    this.database.data.users[userId] = userData;
+    this.saveDatabase();
+  };
+
   public getUserByEmail = (email: string) => {
     return this.getUserDataByField('email', email);
   };

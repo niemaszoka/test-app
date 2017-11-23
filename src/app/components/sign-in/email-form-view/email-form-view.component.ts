@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 })
 
 export class EmailFormViewComponent implements OnInit, OnDestroy {
+  @ViewChild('emailInputElement') emailInputElement: ElementRef;
 
   public emailInput = new FormControl('', Validators.email);
   public passwordInput = new FormControl('', [Validators.minLength(8), Validators.required]);
@@ -24,6 +25,8 @@ export class EmailFormViewComponent implements OnInit, OnDestroy {
               private authService: AuthService) { }
 
   ngOnInit() {
+    this.emailInputElement.nativeElement.focus();
+
     this.loginOption.valueChanges
       .takeUntil(this.ngUnsubscribe)
       .subscribe(() => {

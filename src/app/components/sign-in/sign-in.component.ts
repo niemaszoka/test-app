@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'yv-sign-in',
@@ -8,10 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class SignInComponent implements OnInit {
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-
   }
-
 }
