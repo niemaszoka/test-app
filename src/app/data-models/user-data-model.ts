@@ -4,16 +4,21 @@ import { AuthToken } from './auth-token.interface';
 export class User {
     protected data : UserData;
 
-    constructor(email: string = '', password: string = '') {
+    constructor(email: string = '', password: string = '', authToken: AuthToken) {
         this.data = {
           email: email,
           password: password,
-          authToken: null
+          authToken: authToken,
+          id: this.generateUserId()
         };
     }
 
     public getAuthToken() {
         return this.data.authToken;
+    }
+
+    public getUserData() {
+        return this.data;
     }
 
     public setEmail(email: string) {
@@ -22,6 +27,10 @@ export class User {
 
     public setPassword(password: string) {
         this.data.password = password;
+    }
+
+    public setAuthToken(authToken: AuthToken) {
+        this.data.authToken = authToken;
     }
 
     public checkPassword(passwordToCheck: string) {
@@ -43,4 +52,8 @@ export class User {
     public addTokenData(authToken: AuthToken) {
         this.data.authToken = authToken;
     }
+
+  private generateUserId = (): string => {
+    return Math.ceil(Math.random() * Date.now()).toString();
+  }
 }

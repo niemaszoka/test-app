@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -13,6 +13,8 @@ import { Subject } from 'rxjs/Subject';
 })
 export class PasswordFormViewComponent implements OnInit, OnDestroy {
 
+  @ViewChild('passwordInputElement') passwordInputElement: ElementRef;
+
   public passwordInput = new FormControl('', [Validators.required, Validators.minLength(8)]);
   public errorMessage:string = '';
   private ngUnsubscribe: Subject<boolean> = new Subject();
@@ -22,6 +24,7 @@ export class PasswordFormViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.passwordInputElement.nativeElement.focus();
   }
 
   ngOnDestroy() {
@@ -34,7 +37,7 @@ export class PasswordFormViewComponent implements OnInit, OnDestroy {
       .takeUntil(this.ngUnsubscribe)
       .subscribe(
       () => {
-        this.router.navigate(['/Search']);
+        this.router.navigate(['']);
       }, (error) => {
         this.errorMessage = 'Incorrect password';
       }

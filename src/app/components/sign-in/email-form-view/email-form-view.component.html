@@ -22,7 +22,8 @@
        [ngClass]="[isRegistrationSelected() ? '--register' : '--sign-in']">
     <label class="email-form-view__form__text-input">
       Email
-      <input class="form-text-input"
+      <input #emailInputElement
+             class="form-text-input"
              [formControl]="emailInput"
              (keyup.enter)="onEnterEmailInput()">
     </label>
