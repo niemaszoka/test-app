@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'yv-app-header',
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class AppHeaderComponent implements OnInit {
+
+  private currentUserEmail: string = '';
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -21,5 +23,4 @@ export class AppHeaderComponent implements OnInit {
       this.router.navigate(['/SignIn/email']);
     });
   }
-
 }

@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.app-header {
+  padding: 10px;
+  background: $darkAqua;
+
+  &__logout-button {
+    border: none;
+    padding: 10px;
+    background: $purple;
+    color: $white;
+  }
+}
