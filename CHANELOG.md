@@ -1,6 +1,9 @@
 0.0.2
 ---------
 - Improved UX and UI of email form view and password form view
+- Improved UX and UI of search view
+- Improved logic of database service and authorisation service
+- Improved routing structure
 
 0.0.1
 ---------
