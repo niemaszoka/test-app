@@ -6,6 +6,8 @@
   flex-direction: row;
 
   &__image {
+    cursor: pointer;
+
     img {
       opacity: 1;
       transition: opacity 1s linear;
@@ -17,6 +19,7 @@
 
   &__info {
     padding: 10px;
+    cursor: pointer;
 
     &__title {
       padding: 5px;
