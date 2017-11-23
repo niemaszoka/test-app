@@ -1,0 +1,14 @@
+yv-search {
+  width: 100%;
+  overflow: hidden;
+}
+
+.search {
+  height: 100%;
+
+  &__input {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+}

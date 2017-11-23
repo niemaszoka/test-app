@@ -1,0 +1,13 @@
+<div class="search-results-list"
+     (scroll)="onScroll($event)"
+     [ngClass]="searchComplete ? '--complete' : ''"
+     #scrollableList>
+  <div class="search-results-list__content">
+      <yv-search-list-item *ngFor="let video of resultsList"
+                           [videoData]="video">
+      </yv-search-list-item>
+    <img class="search-results-list__loader"
+         [ngClass]="{'--visible': this.showLoader}"
+         src="../../../../assets/images/loader.svg"/>
+  </div>
+</div>
