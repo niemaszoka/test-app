@@ -24,7 +24,6 @@ import { VideoComponent } from './components/video/video.component';
 import { SearchResultsListComponent } from './components/search/search-results-list/search-results-list.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchListItemComponent } from './components/search/search-list-item/search-list-item.component';
-import { InfiniteScrollComponent } from './components/shared/infinite-scroll/infinite-scroll.component';
 import { ScrollElementService } from './services/scrollElement.service';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 
@@ -39,7 +38,6 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     SearchComponent,
     VideoComponent,
     SearchListItemComponent,
-    InfiniteScrollComponent,
   ],
   imports: [
     BrowserModule,
