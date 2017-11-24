@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 	private nextPageToken: string = null;
 	private currentPageToken: string = null;
 
-	private DEFAULT_RESULTS_LIMIT: number = 20;
+	private readonly DEFAULT_RESULTS_LIMIT: number = 20;
 
 	constructor(private authService: AuthService,
 				private router: Router,

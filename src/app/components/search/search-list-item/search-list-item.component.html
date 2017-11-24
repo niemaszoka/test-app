@@ -1,9 +1,10 @@
 <div class="search-results-item">
-  <div class="search-results-item__image">
-    <img class="hidden"
-            src="{{ videoThumbnailUrl }}"
+  <div  class="search-results-item__image">
+    <img class="search-results-item__image__display"
+         [ngClass]="{'--initially-hidden' : !isImageLoaded}"
+         src="{{ videoThumbnailUrl }}"
          (click)="redirectToVideo()"
-          #imageElement/>
+         #imageElement/>
   </div>
   <div class="search-results-item__info"
        (click)="redirectToVideo()">
