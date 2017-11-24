@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { RestService } from '../../services/rest.service';
+import { GoogleAPIRestService } from '../../services/rest.service';
 import { Video } from '../../data-models/video-data-model';
 
 @Component({
@@ -18,15 +18,15 @@ export class VideoComponent implements OnInit {
 
 	constructor(private route: ActivatedRoute,
 	            private sanitizer: DomSanitizer,
-	            private restService: RestService) {
+	            private googleAPIService: GoogleAPIRestService) {
 	}
 
 	ngOnInit() {
 		this.route.params.subscribe((params) => {
 			this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VIDEO_URL_BASE.concat(params.videoId, this.VIDEO_URL_PARAMS));
 
-			this.restService.getVideoData(params.videoId).subscribe((data) => {
-				const videoSnippetData = data['items'][0];
+			this.googleAPIService.getVideoData(params.videoId).subscribe((data) => {
+				const videoSnippetData = data['items'][0].snippet;
 				this.processVideoData(videoSnippetData);
 			});
 		});

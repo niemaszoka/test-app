@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { RestService } from '../../services/rest.service';
+import { GoogleAPIRestService } from '../../services/rest.service';
 
 @Component({
 	selector: 'yv-search',
@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
 
 	constructor(private authService: AuthService,
 				private router: Router,
-				private restService: RestService) {
+				private googleApiService: GoogleAPIRestService) {
 	}
 
 	ngOnInit() {
@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
 
 		this.currentPageToken = this.nextPageToken;
 
-		return this.restService.getVideosListForPhrase(phrase, this.nextPageToken, this.DEFAULT_RESULTS_LIMIT).subscribe((data) => {
+		return this.googleApiService.getVideosListForPhrase(phrase, this.nextPageToken, this.DEFAULT_RESULTS_LIMIT).subscribe((data) => {
 			// clean current results if search is not dedicated for a next page
 			if (!searchNextPage) {
 				this.results = [];

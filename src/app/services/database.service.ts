@@ -28,7 +28,7 @@ export class DatabaseService {
     this.saveDatabase();
   };
 
-  public getUserByEmail = (email: string) => {
+  public getUserByEmail = (email: string): UserData => {
     return this.getUserDataByField('email', email);
   };
 
@@ -61,7 +61,7 @@ export class DatabaseService {
     this.localStorageService.set(this.DATABASE_LOCAL_STORAGE_KEY, this.database);
   };
 
-  private generateId = () => {
+  private generateId = (): number => {
     return Math.ceil(Math.random() * Date.now());
   }
 }

@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmailFormViewComponent } from './components/sign-in/email-form-view/email-form-view.component';
 import { PasswordFormViewComponent } from './components/sign-in/password-form-view/password-form-view.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import { RestService } from './services/rest.service';
+import { GoogleAPIRestService } from './services/rest.service';
 import { DatabaseService } from './services/database.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
@@ -49,7 +49,7 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
   providers: [
     UserService,
     AuthService,
-    RestService,
+    GoogleAPIRestService,
     DatabaseService,
     LocalStorageService,
     SignInPasswordRouteGuard,
