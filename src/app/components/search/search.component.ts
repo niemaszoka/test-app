@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { GoogleAPIRestService } from '../../services/rest.service';
+import { CommonTexts } from '../../constants/commonTexts';
 
 @Component({
 	selector: 'yv-search',
@@ -15,19 +16,21 @@ export class SearchComponent implements OnInit {
 	public searchInput: FormControl = new FormControl();
 	public results: any[] = [];
 	public isSearchComplete: boolean = false;
-
+	public texts: CommonTexts;
 	private keyUpTimeout: number = null;
 	private nextPageToken: string = null;
 	private currentPageToken: string = null;
 
 	private readonly DEFAULT_RESULTS_LIMIT: number = 20;
 
-	constructor(private authService: AuthService,
+	constructor(commonTexts: CommonTexts,
+	            private authService: AuthService,
 				private router: Router,
-				private googleApiService: GoogleAPIRestService) {
+				private googleApiService: GoogleAPIRestService){
 	}
 
 	ngOnInit() {
+		this.texts = new CommonTexts();
 		if (!this.authService.isUserAuthenticated()) {
 			this.router.navigateByUrl('/SignIn');
 		}

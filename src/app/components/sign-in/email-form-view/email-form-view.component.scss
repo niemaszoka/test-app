@@ -63,6 +63,7 @@
       border-radius: 5px;
       font-size: $basicFontSize;
       cursor: pointer;
+      text-transform: uppercase;
 
       &.--register {
         background: $pinkRed;

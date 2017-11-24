@@ -14,9 +14,9 @@ import { DatabaseService } from './services/database.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import {
-  AuthorizationGuard,
-  SignInEmailRouteGuard,
-  SignInPasswordRouteGuard
+	AuthorizationGuard,
+	SignInEmailRouteGuard,
+	SignInPasswordRouteGuard
 } from './activation-guards';
 import { LocalStorageService } from './services/localStorage.service';
 
@@ -26,38 +26,40 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchListItemComponent } from './components/search/search-list-item/search-list-item.component';
 import { ScrollElementService } from './services/scrollElement.service';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { CommonTexts } from './constants/commonTexts';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppHeaderComponent,
-    EmailFormViewComponent,
-    PasswordFormViewComponent,
-    SignInComponent,
-    SearchResultsListComponent,
-    SearchComponent,
-    VideoComponent,
-    SearchListItemComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    UserService,
-    AuthService,
-    GoogleAPIRestService,
-    DatabaseService,
-    LocalStorageService,
-    SignInPasswordRouteGuard,
-    AuthorizationGuard,
-    SignInEmailRouteGuard,
-    ScrollElementService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		AppHeaderComponent,
+		EmailFormViewComponent,
+		PasswordFormViewComponent,
+		SignInComponent,
+		SearchResultsListComponent,
+		SearchComponent,
+		VideoComponent,
+		SearchListItemComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		HttpClientModule
+	],
+	providers: [
+		UserService,
+		AuthService,
+		GoogleAPIRestService,
+		DatabaseService,
+		LocalStorageService,
+		SignInPasswordRouteGuard,
+		AuthorizationGuard,
+		SignInEmailRouteGuard,
+		ScrollElementService,
+        CommonTexts
+	],
+	bootstrap: [AppComponent]
 })
 
 export class AppModule {

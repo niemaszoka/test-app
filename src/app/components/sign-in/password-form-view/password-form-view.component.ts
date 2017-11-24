@@ -16,20 +16,23 @@ export class PasswordFormViewComponent implements OnInit, OnDestroy {
 
 	@ViewChild('passwordInputElement') passwordInputElement: ElementRef;
 
-	public commonTexts = CommonTexts;
 	public passwordInput: FormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
 	public errorMessage: string = '';
+	public  texts: CommonTexts;
+
 	private ngUnsubscribe: Subject<boolean> = new Subject();
 
 	private readonly errorMessages = {
 	  INCORRECT_PASSWORD: 'Incorrect password'
     };
 
-	constructor(private router: Router,
+	constructor(commonTexts: CommonTexts,
+				private router: Router,
 	            private authService: AuthService) {
 	}
 
 	ngOnInit() {
+		this.texts = new CommonTexts();
 		this.passwordInputElement.nativeElement.focus();
 	}
 

@@ -16,11 +16,11 @@ import { CommonTexts } from '../../../constants/commonTexts';
 export class EmailFormViewComponent implements OnInit, OnDestroy {
 	@ViewChild('emailInputElement') emailInputElement: ElementRef;
 
-	public commonTexts = CommonTexts;
 	public emailInput: FormControl = new FormControl('', Validators.email);
 	public passwordInput: FormControl = new FormControl('', [Validators.minLength(8), Validators.required]);
 	public submitErrorMessage: string = '';
 	public loginOption: FormControl = new FormControl('sign-in', Validators.required);
+	public texts: CommonTexts;
 
 	private ngUnsubscribe: Subject<boolean> = new Subject();
 
@@ -28,10 +28,12 @@ export class EmailFormViewComponent implements OnInit, OnDestroy {
 	  ALREADY_REGISTERED: 'User with this email is not registered.'
     };
 
-	constructor(private router: Router,
+	constructor(commonTexts: CommonTexts,
+	            private router: Router,
 	            private authService: AuthService) { }
 
 	ngOnInit() {
+		this.texts = new CommonTexts();
 		this.emailInputElement.nativeElement.focus();
 
 		this.loginOption.valueChanges
