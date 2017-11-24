@@ -18,12 +18,13 @@
   }
 
   &__info {
-    padding: 10px;
+    padding: 2px 10px;
     cursor: pointer;
 
     &__title {
       padding: 5px;
       font-size: 14px;
+      font-weight: bold;
     }
 
     &__description {

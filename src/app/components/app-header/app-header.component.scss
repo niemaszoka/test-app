@@ -2,12 +2,16 @@
 
 .app-header {
   padding: 10px;
-  background: $darkAqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 
   &__logout-button {
     border: none;
     padding: 10px;
     background: $purple;
     color: $white;
+    border-radius: 6px;
+    font-size: 16px;
   }
 }

@@ -1,16 +1,19 @@
 <div class="search">
-  <yv-app-header></yv-app-header>
+  <div class="search__header">
+    <yv-app-header></yv-app-header>
+  </div>
   <div class="search__input">
-    <label> Search
+    <label>
+      <span class="search__input__icon yv-icon-search"></span>
       <input [formControl]="searchInput"
              (keypress)="onKeyPress($event)"
              (keyup)="onKeyUp($event)">
     </label>
   </div>
-
-  <yv-search-results-list [resultsList]="results"
-                          [scrollEndCallback]="searchNextPageVideos"
-                          [searchComplete]="isSearchComplete"
-
-  ></yv-search-results-list>
+  <div class="search__results">
+    <yv-search-results-list [resultsList]="results"
+                            [scrollEndCallback]="searchNextPageVideos"
+                            [searchComplete]="isSearchComplete">
+    </yv-search-results-list>
+  </div>
 </div>

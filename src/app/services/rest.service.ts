@@ -9,6 +9,16 @@ export class RestService {
 
   }
 
+  public getVideoData = (videoId: string) => {
+    return this.httpClient.get('https://www.googleapis.com/youtube/v3/videos', {
+      params: {
+        key: 'AIzaSyDEWvzZHv8q6nvQsawh89mc9rDLULFQFtQ',
+        id: videoId,
+        part: 'snippet,contentDetails,statistics'
+      }
+    });
+  };
+
   public getVideosListForPhrase = (phrase: string, pageToken: string, limit: number = 20) => {
     const preparedParams = this.prepareVideoListParameters(phrase, pageToken, limit);
 

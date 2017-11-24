@@ -9,7 +9,6 @@
 
     &__option {
       display: block;
-      width: 100px;
       flex: 2 0 auto;
       color: $white;
       padding: 20px;
@@ -19,14 +18,18 @@
 
       &.--sign-in {
         background: $purple;
+        border-top-left-radius: 6px;
       }
 
       &.--register {
         background: $pinkRed;
+        border-top-right-radius: 6px;
       }
 
       input[type="radio"] {
         -webkit-appearance:none;
+        margin: 0;
+        position: absolute;
       }
     }
   }

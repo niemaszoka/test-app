@@ -5,10 +5,21 @@ yv-search {
 
 .search {
   height: 100%;
+  display: grid;
+  grid-template-rows: 50px 100px auto;
+  grid-template-columns: auto;
 
   &__input {
     padding: 10px;
     display: flex;
     justify-content: center;
+
+    input {
+      font-size: 20px;
+    }
+  }
+
+  &__results {
+    overflow: hidden;
   }
 }

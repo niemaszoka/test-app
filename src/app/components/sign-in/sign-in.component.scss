@@ -1,11 +1,12 @@
 @import "../../styles/variables";
 
 .sign-in {
+  padding: 30px;
 
   &__welcome-message {
-    background: $darkAqua;
-    padding: 20px;
+    color: $darkAqua;
+    text-align: center;
     font-size: 2rem;
-    color: $softMint;
+    padding: 60px 20px;
   }
 }
