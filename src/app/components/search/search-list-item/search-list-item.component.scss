@@ -23,12 +23,12 @@
 
 		&__title {
 			padding: 5px;
-			font-size: $smallFontSize;
+			font-size: $fontSize--small;
 			font-weight: bold;
 		}
 
 		&__description {
-			font-size: $extraSmallFontSize;
+			font-size: $fontSize--extraSmall;
 			padding-left: 10px;
 		}
 	}

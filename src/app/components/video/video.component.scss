@@ -39,17 +39,17 @@ yv-video {
 
 			&__title {
 				padding: 5px;
-				font-size: $largeFontSize;
+				font-size: $fontSize--large;
 				font-weight: 600;
 			}
 
 			&__description {
-				font-size: $smallFontSize;
+				font-size: $fontSize--small;
 				white-space: pre-line;
 			}
 
 			&__tags{
-				font-size: $smallFontSize;
+				font-size: $fontSize--small;
 				color: #346e4b;
 				display: flex;
 

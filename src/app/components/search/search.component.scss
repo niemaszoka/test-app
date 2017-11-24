@@ -18,10 +18,10 @@ yv-search {
 
 		&__field {
 			margin: 5px 10px;
-			font-size: $basicFontSize;
+			font-size: $fontSize--basic;
 
 			&::placeholder {
-				font-size: $smallFontSize;
+				font-size: $fontSize--small;
 			}
 
 			&:focus {
