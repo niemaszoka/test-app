@@ -31,7 +31,7 @@ export class GoogleAPIRestService {
 	};
 
 	private prepareVideoListParameters = (phrase: string, pageToken: string, limit: number) => {
-		let params = {
+		const params = {
 			maxResults: limit.toString(),
 			part: this.DEFAULT_PARAMETERS.part,
 			q: phrase,
@@ -47,7 +47,7 @@ export class GoogleAPIRestService {
 	};
 
 	private makeGoogleAPIRequest = (dataReguestType: string, params) => {
-		let paramsWithAPIKey = params;
+		const paramsWithAPIKey = params;
 		paramsWithAPIKey.key = this.GOOGLE_APIS_KEY;
 		const url = this.GOOGLE_APIS_DOMAIN.concat(this.YOUTUBE_API_POSTFIX, dataReguestType);
 

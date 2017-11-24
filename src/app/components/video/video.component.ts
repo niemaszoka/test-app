@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { GoogleAPIRestService } from '../../services/rest.service';
+import { GoogleAPIRestService } from '../../services/gooleAPIRest.service';
 import { Video } from '../../data-models/video-data-model';
 
 @Component({

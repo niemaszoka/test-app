@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { GoogleAPIRestService } from '../../services/rest.service';
+import { GoogleAPIRestService } from '../../services/gooleAPIRest.service';
 import { CommonTexts } from '../../constants/commonTexts';
 
 @Component({
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
 	}
 
 	public onKeyPress = (event) => {
-		if(event.charCode === 13) {
+		if (event.charCode === 13) {
 			return;
 		}
 
@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
 		}
 
 		this.keyUpTimeout = window.setTimeout(() => {
-			if(this.searchInput.value) {
+			if (this.searchInput.value) {
 				this.searchVideos(this.searchInput.value);
 			} else {
 				this.results = [];

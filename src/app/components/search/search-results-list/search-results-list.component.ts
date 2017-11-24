@@ -14,12 +14,12 @@ import { ScrollElementService } from '../../../services/scrollElement.service';
 export class SearchResultsListComponent implements OnInit, OnChanges {
 
 	@Input() resultsList: Array<any>;
-	@Input() scrollEndCallback: (any?)=>any;
+	@Input() scrollEndCallback: (any?) => any;
 	@Input() searchComplete: boolean;
 	@ViewChild('scrollableList') scrollableList: ElementRef;
 
-	public showLoader: boolean = false;
-	private lastScrollTop: number = 0;
+	public showLoader = false;
+	private lastScrollTop = 0;
 	private scrollDownTimeout: number = null;
 	private readonly SCROLL_BOTTOM_LATITUDE = 40;
 
@@ -59,7 +59,7 @@ export class SearchResultsListComponent implements OnInit, OnChanges {
 	}
 
 	private scrollToTopIfResultsAreFresh = (resultsListChange: SimpleChange) => {
-		if(resultsListChange.previousValue.length >= resultsListChange.currentValue.length) {
+		if (resultsListChange.previousValue.length >= resultsListChange.currentValue.length) {
 			this.scrollElementService.scrollTop(this.scrollableList.nativeElement);
 		}
     }
