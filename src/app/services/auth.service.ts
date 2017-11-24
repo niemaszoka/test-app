@@ -5,6 +5,7 @@ import { UserData } from '../data-models/user-data.interface';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService } from './localStorage.service';
 import { User } from '../data-models/user-data-model';
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -16,8 +17,8 @@ export class AuthService {
   private readonly AUTH_DATA_LOCAL_STORAGE_KEY = 'user-auth-data';
 
   constructor(private databaseService: DatabaseService,
-              protected localStorageService: LocalStorageService) {
-
+              private localStorageService: LocalStorageService,
+              private router: Router) {
   }
 
   loginUserWithPassword = (password: string) => {
@@ -118,6 +119,7 @@ export class AuthService {
   public logoutFromApp = () => {
     this.clearUserAuthData();
     this.registeredUser = null;
+    this.router.navigate(['/SignIn/email']);
   };
 
   private updateCurrentUserAuthToken = (newAuthToken: AuthToken) => {
