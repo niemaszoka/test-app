@@ -11,7 +11,6 @@ import { User } from '../data-models/user-data-model';
 export class AuthService {
   private getUserDataObservable: Observable<UserData>;
   private loginUserObservable: Observable<boolean>;
-  private logoutFromAppObservable: Observable<boolean>;
   private registeredUser: User = null;
   private readonly tokenDurationInHours: number = 24;
   private readonly AUTH_DATA_LOCAL_STORAGE_KEY = 'user-auth-data';
@@ -117,14 +116,8 @@ export class AuthService {
   };
 
   public logoutFromApp = () => {
-    this.logoutFromAppObservable = new Observable((observer) => {
-      this.clearUserAuthData();
-      this.registeredUser = null;
-      observer.next(true);
-      observer.complete();
-    });
-
-    return this.logoutFromAppObservable;
+    this.clearUserAuthData();
+    this.registeredUser = null;
   };
 
   private updateCurrentUserAuthToken = (newAuthToken: AuthToken) => {

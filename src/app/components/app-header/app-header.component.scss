@@ -1,17 +1,32 @@
 @import '../../styles/variables';
 
 .app-header {
-  padding: 10px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 
-  &__logout-button {
+  &__button {
     border: none;
-    padding: 10px;
+    padding: 8px 16px;
     background: $purple;
     color: $white;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &.--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+
+    &__icon {
+      padding: 5px;
+    }
   }
 }
