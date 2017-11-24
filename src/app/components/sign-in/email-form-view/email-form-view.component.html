@@ -23,7 +23,7 @@
     <label class="email-form-view__form__text-input">
       {{ texts.EMAIL }}
       <input #emailInputElement
-             class="form-text-input"
+             class="yv-text-input"
              [formControl]="emailInput"
              (keyup.enter)="onEnterEmailInput()">
     </label>
@@ -31,7 +31,7 @@
     <label class="email-form-view__form__text-input"
             *ngIf="loginOption.value === 'register'">
       {{ texts.PASSWORD}}
-      <input class="form-text-input"
+      <input class="yv-text-input"
              [formControl]="passwordInput"
              type="password">
     </label>

@@ -1,5 +1,7 @@
 @import 'app/styles/variables';
 @import 'app/styles/fonts.scss';
+@import 'app/styles/common/yv-text-input.scss';
+@import 'app/styles/common/yv-scrollbar';
 
 html {
   background: $white;
