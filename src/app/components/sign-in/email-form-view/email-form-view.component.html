@@ -42,7 +42,7 @@
             [ngClass]="[isRegistrationSelected() ? '--register' : '--sign-in']"
             (click)="onSubmit()"
             [disabled]="isSubmissionDisabled()">
-        {{(loginOption.value === 'signIn') ? texts.PROCEED : texts.REGISTER}}
+        {{(loginOption.value === 'sign-in') ? texts.PROCEED : texts.REGISTER}}
       </button>
   </div>
 </div>
