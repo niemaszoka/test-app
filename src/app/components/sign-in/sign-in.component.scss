@@ -4,9 +4,9 @@
   padding: 30px;
 
   &__welcome-message {
-    color: $darkAqua;
+    padding: 60px 20px;
     text-align: center;
     font-size: 2rem;
-    padding: 60px 20px;
+    color: $darkAqua;
   }
 }

@@ -6,7 +6,7 @@
              value="signIn"
              checked id="loginOption_signIn"
              [formControl]="loginOption">
-      SIGN IN
+      {{ commonTexts.SIGN_IN}}
     </label>
 
     <label class="email-form-view__login-options__option --register" for="loginOption_register">
@@ -15,13 +15,13 @@
              value="register"
              id="loginOption_register"
              [formControl]="loginOption">
-      REGISTER
+      {{ commonTexts.REGISTER }}
     </label>
   </div>
   <div class="email-form-view__form"
        [ngClass]="[isRegistrationSelected() ? '--register' : '--sign-in']">
     <label class="email-form-view__form__text-input">
-      Email
+      {{ commonTexts.EMAIL }}
       <input #emailInputElement
              class="form-text-input"
              [formControl]="emailInput"
@@ -30,7 +30,7 @@
 
     <label class="email-form-view__form__text-input"
             *ngIf="loginOption.value === 'register'">
-      Password
+      {{ commonTexts.PASSWORD}}
       <input class="form-text-input"
              [formControl]="passwordInput"
              type="password">

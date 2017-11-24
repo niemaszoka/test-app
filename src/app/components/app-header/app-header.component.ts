@@ -9,8 +9,8 @@ import { AuthService } from '../../services/auth.service';
 	encapsulation: ViewEncapsulation.None
 })
 export class AppHeaderComponent implements OnInit {
-
 	private showSearchRedirectButton: boolean = false;
+	private readonly APP_HEADER: string = 'YouTube viewer';
 
 	constructor(private authService: AuthService,
 				private router: Router) { }
