@@ -1,64 +1,66 @@
 import {
-  Component, ElementRef, Input, OnChanges, OnInit, ViewChild,
-  ViewEncapsulation
+	Component, ElementRef, Input, OnChanges, OnInit, SimpleChange, ViewChild,
+	ViewEncapsulation
 } from '@angular/core';
 
 import { ScrollElementService } from '../../../services/scrollElement.service';
 
 @Component({
-  selector: 'yv-search-results-list',
-  templateUrl: './search-results-list.component.html',
-  styleUrls: ['./search-results-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+	selector: 'yv-search-results-list',
+	templateUrl: './search-results-list.component.html',
+	styleUrls: ['./search-results-list.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class SearchResultsListComponent implements OnInit, OnChanges {
 
-  @Input() resultsList: Array<any>;
-  @Input() scrollEndCallback: (any?)=>any;
-  @Input() searchComplete: boolean;
-  @ViewChild('scrollableList') scrollableList: ElementRef;
+	@Input() resultsList: Array<any>;
+	@Input() scrollEndCallback: (any?) => any;
+	@Input() searchComplete: boolean;
+	@ViewChild('scrollableList') scrollableList: ElementRef;
 
-  public showLoader: boolean = false;
-  private scrollBottomLatitude = 40;
-  private lastScrollTop: number = 0;
-  private scrollDownTimeout: number = null;
+	public showLoader = false;
+	private lastScrollTop = 0;
+	private scrollDownTimeout: number = null;
+	private readonly SCROLL_BOTTOM_LATITUDE = 40;
 
-  constructor(private scrollElementService: ScrollElementService) { }
+	constructor(private scrollElementService: ScrollElementService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  ngOnChanges(changes) {
-    if (changes.hasOwnProperty('resultsList') && !changes.resultsList.firstChange) {
-        if(changes.resultsList.previousValue.length >= changes.resultsList.currentValue.length) {
-          this.scrollElementService.scrollTop(this.scrollableList.nativeElement);
-      }
+	ngOnChanges(changes) {
+		if (changes.hasOwnProperty('resultsList') && !changes.resultsList.firstChange) {
+		  this.scrollToTopIfResultsAreFresh(changes.resultsList);
+		}
+	}
+
+	onResultsScroll(event) {
+		const currentScroll = event.srcElement.scrollTop;
+
+		if (currentScroll > this.lastScrollTop) {
+			this.showLoader = true;
+			if (this.scrollDownTimeout) {
+				window.clearTimeout(this.scrollDownTimeout);
+			}
+
+			this.scrollDownTimeout = window.setTimeout(() => {
+				this.onScrollDown(event);
+				this.scrollDownTimeout = null;
+			}, 0);
+		}
+		this.lastScrollTop = event.srcElement.scrollTop;
+	}
+
+	public onScrollDown(event) {
+		if (this.scrollElementService.isElementScrolledToBottom(this.scrollableList.nativeElement, this.SCROLL_BOTTOM_LATITUDE)) {
+			this.scrollEndCallback();
+			this.showLoader = false;
+		}
+	}
+
+	private scrollToTopIfResultsAreFresh = (resultsListChange: SimpleChange) => {
+		if (resultsListChange.previousValue.length >= resultsListChange.currentValue.length) {
+			this.scrollElementService.scrollTop(this.scrollableList.nativeElement);
+		}
     }
-  }
-
-  onScroll(event) {
-    const currentScroll = event.srcElement.scrollTop;
-    console.log('on scroll', currentScroll, this.lastScrollTop);
-    if (currentScroll > this.lastScrollTop) {
-      this.showLoader = true;
-      if (this.scrollDownTimeout) {
-        window.clearTimeout(this.scrollDownTimeout);
-      }
-
-      this.scrollDownTimeout = window.setTimeout(() => {
-        this.onScrollDown(event);
-        this.scrollDownTimeout = null;
-      }, 0);
-    }
-    this.lastScrollTop = event.srcElement.scrollTop;
-  }
-
-  public onScrollDown(event) {
-    console.log('on scroll down', this.scrollableList);
-    if (this.scrollElementService.isElementScrolledToBottom(this.scrollableList.nativeElement, this.scrollBottomLatitude)) {
-      console.log('search');
-      this.scrollEndCallback();
-      this.showLoader = false;
-    }
-  }
 }

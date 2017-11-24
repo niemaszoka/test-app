@@ -1,0 +1,10 @@
+.yv-text-input {
+	outline: 0;
+	border: 0;
+	border-bottom: 2px solid $grey;
+	margin: 5px 10px;
+
+	&:focus {
+		border-color: $darkAqua;
+	}
+}

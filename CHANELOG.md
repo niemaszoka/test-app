@@ -5,6 +5,7 @@
 - Improved logic of database service and authorisation service
 - Improved routing structure
 - Styling for video view
+- Code refactoring
 
 0.0.1
 ---------

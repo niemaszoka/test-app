@@ -1,5 +1,5 @@
-<div class="search-results-list"
-     (scroll)="onScroll($event)"
+<div class="search-results-list yv-scrollbar"
+     (scroll)="onResultsScroll($event)"
      [ngClass]="searchComplete ? '--complete' : ''"
      #scrollableList>
   <div class="search-results-list__content">

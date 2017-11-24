@@ -1,17 +1,33 @@
 @import '../../styles/variables';
 
 .app-header {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+	padding: 2vh 5vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 
-  &__logout-button {
-    border: none;
-    padding: 10px;
-    background: $purple;
-    color: $white;
-    border-radius: 6px;
-    font-size: 16px;
-  }
+	&__button {
+		border: none;
+		padding: 10px 16px;
+		background: $purple;
+		color: $white;
+		border-radius: $borderRadius--small;
+		font-size: $fontSize--basic;
+		cursor: pointer;
+
+		&.--hidden {
+			visibility: hidden;
+		}
+	}
+
+	&__title {
+		font-size: $fontSize--basic;
+		display: flex;
+		align-items: center;
+
+		&__icon {
+			padding: 5px;
+		}
+	}
 }

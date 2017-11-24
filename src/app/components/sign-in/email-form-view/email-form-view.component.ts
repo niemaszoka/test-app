@@ -4,85 +4,94 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
+import { CommonTexts } from '../../../constants/commonTexts';
 
 @Component({
-  selector: 'yv-email-form-view',
-  templateUrl: './email-form-view.component.html',
-  styleUrls: ['email-form-view.component.scss'],
-  encapsulation: ViewEncapsulation.None
+	selector: 'yv-email-form-view',
+	templateUrl: './email-form-view.component.html',
+	styleUrls: ['email-form-view.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class EmailFormViewComponent implements OnInit, OnDestroy {
-  @ViewChild('emailInputElement') emailInputElement: ElementRef;
+	@ViewChild('emailInputElement') emailInputElement: ElementRef;
 
-  public emailInput = new FormControl('', Validators.email);
-  public passwordInput = new FormControl('', [Validators.minLength(8), Validators.required]);
-  public submitErrorMessage: string = '';
-  public loginOption = new FormControl('signIn', Validators.required);
-  private ngUnsubscribe: Subject<boolean> = new Subject();
+	public emailInput: FormControl = new FormControl('', Validators.email);
+	public passwordInput: FormControl = new FormControl('', [Validators.minLength(8), Validators.required]);
+	public submitErrorMessage: string = '';
+	public loginOption: FormControl = new FormControl('sign-in', Validators.required);
+	public texts: CommonTexts;
 
-  constructor(private router: Router,
-              private authService: AuthService) { }
+	private ngUnsubscribe: Subject<boolean> = new Subject();
 
-  ngOnInit() {
-    this.emailInputElement.nativeElement.focus();
+	private readonly errorMessages = {
+	  ALREADY_REGISTERED: 'User with this email is not registered.'
+    };
 
-    this.loginOption.valueChanges
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(() => {
-        if (this.submitErrorMessage) {
-          this.submitErrorMessage = '';
-        }
-      }
-    );
-  }
+	constructor(commonTexts: CommonTexts,
+	            private router: Router,
+	            private authService: AuthService) { }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
+	ngOnInit() {
+		this.texts = new CommonTexts();
+		this.emailInputElement.nativeElement.focus();
 
-  register() {
-    this.authService.registerUser(this.emailInput.value, this.passwordInput.value);
-    this.router.navigate(['/Search']);
-  }
+		this.loginOption.valueChanges
+			.takeUntil(this.ngUnsubscribe)
+			.subscribe(() => {
+					if (this.submitErrorMessage) {
+						this.submitErrorMessage = '';
+					}
+				}
+			);
+	}
 
-  signIn() {
-    this.authService.getRegisteredUserData(this.emailInput.value)
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(
-      (userData) => {
-        this.authService.saveRegisteredUserData(userData);
-        this.router.navigate(['/SignIn/password']);
-      }, (error) => {
-        this.submitErrorMessage = 'User with this email is not registered.';
-      }
-    );
-  }
+	ngOnDestroy() {
+		this.ngUnsubscribe.next();
+		this.ngUnsubscribe.complete();
+	}
 
-  isRegistrationSelected = (): boolean => {
-    return this.loginOption.value === 'register';
-  };
+	register() {
+		this.authService.registerUser(this.emailInput.value, this.passwordInput.value);
+		this.router.navigate(['/Search']);
+	}
 
-  onSubmit() {
-    return this.isRegistrationSelected() ? this.register() : this.signIn();
-  };
+	signIn() {
+		this.authService.getRegisteredUserData(this.emailInput.value)
+			.takeUntil(this.ngUnsubscribe)
+			.subscribe(
+				(userData) => {
+					this.authService.saveRegisteredUserData(userData);
+					this.router.navigate(['/SignIn/password']);
+				}, (error) => {
+					this.submitErrorMessage = this.errorMessages.ALREADY_REGISTERED;
+				}
+			);
+	}
 
-  isSubmissionDisabled() {
-    return this.isRegistrationSelected() ? this.isRegistrationDisabled(): this.isSignInDisabled();
-  }
+	isRegistrationSelected = (): boolean => {
+		return this.loginOption.value === 'register';
+	};
 
-  isSignInDisabled(): boolean {
-    return this.emailInput.invalid;
-  }
+	onSubmit() {
+		return this.isRegistrationSelected() ? this.register() : this.signIn();
+	};
 
-  isRegistrationDisabled(): boolean {
-    return this.emailInput.invalid || this.passwordInput.invalid;
-  }
+	isSubmissionDisabled() {
+		return this.isRegistrationSelected() ? this.isRegistrationDisabled(): this.isSignInDisabled();
+	}
 
-  onEnterEmailInput() {
-    if (!this.isRegistrationSelected() && !this.isSubmissionDisabled()) {
-      this.onSubmit();
-    }
-  }
+	isSignInDisabled(): boolean {
+		return this.emailInput.invalid;
+	}
+
+	isRegistrationDisabled(): boolean {
+		return this.emailInput.invalid || this.passwordInput.invalid;
+	}
+
+	onEnterEmailInput() {
+		if (!this.isRegistrationSelected() && !this.isSubmissionDisabled()) {
+			this.onSubmit();
+		}
+	}
 }
