@@ -8,19 +8,19 @@ import { SearchComponent } from './components/search/search.component';
 import { VideoComponent } from './components/video/video.component';
 
 const routes: Routes= [
-  { path: 'SignIn', component: SignInComponent, children: [
-      { path: 'email', component: EmailFormViewComponent, canActivate: [SignInEmailRouteGuard]},
-      { path: 'password', component: PasswordFormViewComponent, canActivate: [SignInPasswordRouteGuard]},
-      { path: '', redirectTo: 'email', pathMatch: 'full' },
-  ]},
-  { path: 'video/:videoId', component: VideoComponent, canActivate: [AuthorizationGuard]},
-  { path: '', component: SearchComponent, canActivate: [AuthorizationGuard]},
-  { path: '**', redirectTo: '', pathMatch: 'full'}
+	{ path: 'SignIn', component: SignInComponent, children: [
+		{ path: 'email', component: EmailFormViewComponent, canActivate: [SignInEmailRouteGuard]},
+		{ path: 'password', component: PasswordFormViewComponent, canActivate: [SignInPasswordRouteGuard]},
+		{ path: '', redirectTo: 'email', pathMatch: 'full' },
+	]},
+	{ path: 'video/:videoId', component: VideoComponent, canActivate: [AuthorizationGuard]},
+	{ path: '', component: SearchComponent, canActivate: [AuthorizationGuard]},
+	{ path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [ RouterModule.forRoot(routes) ],
+	exports: [RouterModule],
+	imports: [ RouterModule.forRoot(routes) ],
 })
 
 export class AppRoutingModule {

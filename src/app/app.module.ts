@@ -57,7 +57,7 @@ import { CommonTexts } from './constants/commonTexts';
 		AuthorizationGuard,
 		SignInEmailRouteGuard,
 		ScrollElementService,
-        CommonTexts
+		CommonTexts
 	],
 	bootstrap: [AppComponent]
 })
