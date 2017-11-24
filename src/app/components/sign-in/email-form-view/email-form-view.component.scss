@@ -2,91 +2,91 @@
 
 .email-form-view {
 
-  &__login-options {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+	&__login-options {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
 
-    &__option {
-      display: block;
-      flex: 2 0 auto;
-      color: $white;
-      padding: 20px;
-      font-size: $basicFontSize;
-      cursor: pointer;
-      text-align: center;
+		&__option {
+			display: block;
+			flex: 2 0 auto;
+			color: $white;
+			padding: 20px;
+			font-size: $basicFontSize;
+			cursor: pointer;
+			text-align: center;
 
-      &.--sign-in {
-        background: $purple;
-        border-top-left-radius: 6px;
-      }
+			&.--sign-in {
+				background: $purple;
+				border-top-left-radius: 6px;
+			}
 
-      &.--register {
-        background: $pinkRed;
-        border-top-right-radius: 6px;
-      }
+			&.--register {
+				background: $pinkRed;
+				border-top-right-radius: 6px;
+			}
 
-      input[type="radio"] {
-        -webkit-appearance:none;
-        margin: 0;
-        position: absolute;
-      }
-    }
-  }
+			input[type="radio"] {
+				-webkit-appearance:none;
+				margin: 0;
+				position: absolute;
+			}
+		}
+	}
 
-  &__form {
-    display: flex;
-    border: 3px solid;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+	&__form {
+		display: flex;
+		border: 3px solid;
+		padding: 20px;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
 
-    &.--register {
-      border-color: $pinkRed;
-    }
+		&.--register {
+			border-color: $pinkRed;
+		}
 
-    &.--sign-in {
-      border-color: $purple;
-    }
+		&.--sign-in {
+			border-color: $purple;
+		}
 
-    &__text-input {
-      padding: 20px 30px;
+		&__text-input {
+			padding: 20px 30px;
 
-      .yv-text-input {
-        font-size: 20px;
-      }
-    }
+			.yv-text-input {
+				font-size: $basicFontSize;
+			}
+		}
 
-    &__submit-button {
-      padding: 10px 20px;
-      color: $white;
-      border: none;
-      border-radius: 5px;
-      font-size: $basicFontSize;
-      cursor: pointer;
-      text-transform: uppercase;
+		&__submit-button {
+			padding: 10px 20px;
+			color: $white;
+			border: none;
+			border-radius: 5px;
+			font-size: $basicFontSize;
+			cursor: pointer;
+			text-transform: uppercase;
 
-      &.--register {
-        background: $pinkRed;
-      }
+			&.--register {
+				background: $pinkRed;
+			}
 
-      &.--sign-in {
-        background: $purple;
-      }
+			&.--sign-in {
+				background: $purple;
+			}
 
-      &:disabled {
-        background: $grey;
-        cursor: default;
-      }
-    }
+			&:disabled {
+				background: $grey;
+				cursor: default;
+			}
+		}
 
-    &__error-message {
-      padding: 20px;
-      color: $red;
-      font-weight: bold;
-    }
-  }
+		&__error-message {
+			padding: 20px;
+			color: $red;
+			font-weight: bold;
+		}
+	}
 }

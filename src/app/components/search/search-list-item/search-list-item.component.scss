@@ -1,35 +1,35 @@
 @import '../../../styles/variables';
 
 .search-results-item {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
 
-  &__image {
-    &__display {
-      cursor: pointer;
-      opacity: 1;
-      transition: opacity 1s linear;
+	&__image {
+		&__display {
+			cursor: pointer;
+			opacity: 1;
+			transition: opacity 1s linear;
 
-      &.--initially-hidden {
-        opacity: 0;
-      }
-    }
-  }
+			&.--initially-hidden {
+				opacity: 0;
+			}
+		}
+	}
 
-  &__info {
-    padding: 2px 10px;
-    cursor: pointer;
+	&__info {
+		padding: 2px 10px;
+		cursor: pointer;
 
-    &__title {
-      padding: 5px;
-      font-size: 14px;
-      font-weight: bold;
-    }
+		&__title {
+			padding: 5px;
+			font-size: $smallFontSize;
+			font-weight: bold;
+		}
 
-    &__description {
-      font-size: 10px;
-      padding-left: 10px;
-    }
-  }
+		&__description {
+			font-size: $extraSmallFontSize;
+			padding-left: 10px;
+		}
+	}
 }
