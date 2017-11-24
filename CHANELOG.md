@@ -4,6 +4,7 @@
 - Improved UX and UI of search view
 - Improved logic of database service and authorisation service
 - Improved routing structure
+- Styling for video view
 
 0.0.1
 ---------
