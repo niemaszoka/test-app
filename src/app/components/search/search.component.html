@@ -5,9 +5,11 @@
   <div class="search__input">
     <label>
       <span class="search__input__icon yv-icon-search"></span>
-      <input [formControl]="searchInput"
+      <input class="search__input__field"
+             [formControl]="searchInput"
              (keypress)="onKeyPress($event)"
-             (keyup)="onKeyUp($event)">
+             (keyup)="onKeyUp($event)"
+             placeholder="What are you looking for?">
     </label>
   </div>
   <div class="search__results">

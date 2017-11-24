@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 yv-search {
   width: 100%;
   overflow: hidden;
@@ -14,8 +16,20 @@ yv-search {
     display: flex;
     justify-content: center;
 
-    input {
-      font-size: 20px;
+    &__field {
+      margin: 5px 10px;
+      outline: 0;
+      border: 0;
+      border-bottom: 2px solid $grey;
+      font-size: $basicFontSize;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+
+      &:focus {
+        border-color: $darkAqua;
+      }
     }
   }
 
