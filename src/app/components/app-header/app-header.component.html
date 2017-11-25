@@ -1,0 +1,13 @@
+<div class="app-header">
+    <button class="app-header__button yv-icon-search"
+            [ngClass]="{'--hidden': !showSearchRedirectButton}"
+            (click)="goToSearchView()">
+    </button>
+    <div class="app-header__title">
+        <i class="app-header__title__icon yv-icon-play2"></i>
+        <span>{{ APP_HEADER }}</span>
+    </div>
+    <button class="app-header__button yv-icon-exit"
+            (click)="logoutFromApp()">
+    </button>
+</div>

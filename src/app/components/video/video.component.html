@@ -1,0 +1,23 @@
+<div class="video">
+  <yv-app-header></yv-app-header>
+  <div class="video__display">
+    <div class="video__display__player">
+      <iframe class="video__display__player__iframe"
+              [src]="videoUrl"
+              frameborder="0"
+              allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video__display__info">
+      <div class="video__display__info__title">
+        {{video.title}}
+      </div>
+      <p class="video__display__info__description">
+        {{video.description}}
+      </p>
+      <div class="video__display__info__tags">
+        <div *ngFor="let tag of video.tags" class="tag">{{tag}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="search-results-list yv-scrollbar"
+     (scroll)="onResultsScroll($event)"
+     [ngClass]="searchComplete ? '--complete' : ''"
+     #scrollableList>
+  <div class="search-results-list__content">
+      <yv-search-list-item *ngFor="let video of resultsList"
+                           [videoData]="video">
+      </yv-search-list-item>
+  </div>
+</div>

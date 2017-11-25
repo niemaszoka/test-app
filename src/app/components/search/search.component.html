@@ -1,0 +1,21 @@
+<div class="search">
+  <div class="search__header">
+    <yv-app-header></yv-app-header>
+  </div>
+  <div class="search__input">
+    <label>
+      <span class="search__input__icon yv-icon-search"></span>
+      <input class="search__input__field yv-text-input"
+             [formControl]="searchInput"
+             (keypress)="onKeyPress($event)"
+             (keyup)="onKeyUp($event)"
+             placeholder="{{texts.SEARCH_PLACEHOLDER}}">
+    </label>
+  </div>
+  <div class="search__results">
+    <yv-search-results-list [resultsList]="results"
+                            [scrollEndCallback]="searchNextPageVideos"
+                            [searchComplete]="isSearchComplete">
+    </yv-search-results-list>
+  </div>
+</div>

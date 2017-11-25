@@ -1,0 +1,49 @@
+<div class="email-form-view">
+  <div class="email-form-view__login-options">
+    <label class="email-form-view__login-options__option --sign-in" for="loginOption_signIn">
+      <input type="radio"
+             name="loginOption"
+             value="signIn"
+             checked id="loginOption_signIn"
+             [formControl]="loginOption">
+      {{ texts.SIGN_IN}}
+    </label>
+
+    <label class="email-form-view__login-options__option --register" for="loginOption_register">
+      <input type="radio"
+             name="loginOption"
+             value="register"
+             id="loginOption_register"
+             [formControl]="loginOption">
+      {{ texts.REGISTER }}
+    </label>
+  </div>
+  <div class="email-form-view__form"
+       [ngClass]="[isRegistrationSelected() ? '--register' : '--sign-in']">
+    <label class="email-form-view__form__text-input">
+      {{ texts.EMAIL }}
+      <input #emailInputElement
+             class="yv-text-input"
+             [formControl]="emailInput"
+             (keyup.enter)="onEnterEmailInput()">
+    </label>
+
+    <label class="email-form-view__form__text-input"
+            *ngIf="loginOption.value === 'register'">
+      {{ texts.PASSWORD}}
+      <input class="yv-text-input"
+             [formControl]="passwordInput"
+             type="password">
+    </label>
+
+      <div class="email-form-view__form__error-message" *ngIf="passwordInput.invalid && passwordInput.errors.minlength">Password must be at least 8 characters long.</div>
+      <div class="email-form-view__form__error-message" *ngIf="submitErrorMessage">{{submitErrorMessage}}</div>
+      <button class="email-form-view__form__submit-button"
+            [ngClass]="[isRegistrationSelected() ? '--register' : '--sign-in']"
+            (click)="onSubmit()"
+            [disabled]="isSubmissionDisabled()">
+        {{(loginOption.value === 'sign-in') ? texts.PROCEED : texts.REGISTER}}
+      </button>
+  </div>
+</div>
+

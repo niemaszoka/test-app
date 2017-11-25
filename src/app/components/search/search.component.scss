@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+yv-search {
+	width: 100%;
+	overflow: hidden;
+}
+
+.search {
+	height: 100%;
+	display: grid;
+	grid-template-rows: 50px 100px auto;
+	grid-template-columns: auto;
+
+	&__input {
+		padding: 50px 10px 10px 10px;
+		display: flex;
+		justify-content: center;
+
+		&__field {
+			margin: 5px 10px;
+			font-size: $fontSize--basic;
+
+			&::placeholder {
+				font-size: $fontSize--small;
+			}
+
+			&:focus {
+				border-color: $darkAqua;
+			}
+		}
+	}
+
+	&__results {
+		overflow: hidden;
+		padding-right: 10px;
+	}
+}

@@ -1,0 +1,16 @@
+@import 'app/styles/variables';
+@import 'app/styles/fonts.scss';
+@import 'app/styles/common/yv-text-input.scss';
+@import 'app/styles/common/yv-scrollbar';
+
+html {
+  background: $white;
+  font-family: 'WorkSans', sans-serif;
+  min-width: 320px;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
