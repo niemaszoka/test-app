@@ -41,6 +41,7 @@ yv-video {
 				padding: 5px;
 				font-size: $fontSize--large;
 				font-weight: 600;
+				color: $darkAqua;
 			}
 
 			&__description {
@@ -52,9 +53,15 @@ yv-video {
 				font-size: $fontSize--small;
 				color: #346e4b;
 				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
 
 				.tag {
 					padding: 5px;
+					border-radius: $borderRadius--medium;
+					color: $darkAqua;
+					background: $softMint;
+					margin: 4px;
 				}
 			}
 		}

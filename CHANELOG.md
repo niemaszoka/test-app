@@ -1,6 +1,7 @@
 1.0.0
 ---------
 - Updated main version
+- Small styling improvements for video tags and titles
 
 0.0.2
 ---------
