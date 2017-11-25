@@ -6,8 +6,5 @@
       <yv-search-list-item *ngFor="let video of resultsList"
                            [videoData]="video">
       </yv-search-list-item>
-    <img class="search-results-list__loader"
-         [ngClass]="{'--visible': this.showLoader}"
-         src="../../../../assets/images/loader.svg"/>
   </div>
 </div>
