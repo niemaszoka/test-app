@@ -2,6 +2,7 @@
 ---------
 - Updated main version
 - Small styling improvements for video tags and titles
+- Removed unused loader from search view;
 
 0.0.2
 ---------
