@@ -1,3 +1,7 @@
+1.0.0
+---------
+- Updated main version
+
 0.0.2
 ---------
 - Improved UX and UI of email form view and password form view
